@@ -1,9 +1,0 @@
-# ملفات النظام
-.DS_Store
-Thumbs.db
-
-# ملفات مؤقتة
-*.zip
-*.log
-node_modules/
-.env
