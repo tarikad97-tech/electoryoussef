@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>المنتج | إلكترو يوسف</title>
+  <link rel="preconnect" href="https://script.google.com">
+  <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="store-body product-body">
+
+  <!-- ========== الهيدر ========== -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+        </span>
+        <span class="brand-name">إلكترو يوسف</span>
+      </a>
+      <a class="back-link" href="index.html#products">→ المتجر</a>
+    </div>
+  </header>
+
+  <main class="product-page wrap">
+
+    <!-- مسار التنقل (كمبيوتر وتابلت) -->
+    <nav class="crumbs" aria-label="مسار التنقل">
+      <a href="index.html">الرئيسية</a><span>/</span>
+      <a href="index.html#products">المنتجات</a><span>/</span>
+      <span id="crumbName">...</span>
+    </nav>
+
+    <!-- هيكل التحميل -->
+    <div class="pskel-wrap" id="pSkeleton" aria-hidden="true">
+      <div class="pskel pskel-img"></div>
+      <div class="pskel-col">
+        <div class="pskel pskel-line"></div>
+        <div class="pskel pskel-line short"></div>
+        <div class="pskel pskel-line"></div>
+      </div>
+    </div>
+
+    <!-- رسالة خطأ / منتج غير موجود -->
+    <div class="shop-state" id="pState" hidden></div>
+
+    <!-- المنتج -->
+    <article class="pview" id="productView" hidden>
+
+      <!-- معرض الصور -->
+      <div class="pgallery">
+        <div class="gwrap">
+          <div class="gtrack" id="gTrack"></div>
+          <span class="gcount" id="gCount" hidden></span>
+          <div class="gdots" id="gDots"></div>
+          <span class="gzoom" id="gZoom" hidden>اضغط للتكبير</span>
+        </div>
+        <div class="gthumbs" id="gThumbs"></div>
+      </div>
+
+      <!-- المعلومات الأساسية -->
+      <div class="pmain">
+        <h1 class="ptitle" id="pTitle"></h1>
+        <div class="pprice2">
+          <span class="pnow" id="pPrice"></span>
+          <span class="pwas" id="pOld" hidden></span>
+          <span class="poff" id="pOff" hidden></span>
+        </div>
+        <p class="psave" id="pSave" hidden></p>
+        <div class="pmeta">
+          <span class="pill" id="pStatus"></span>
+          <span class="pstock2" id="pStock"></span>
+          <button type="button" class="share-btn" id="shareBtn" hidden>مشاركة</button>
+        </div>
+      </div>
+
+      <!-- الوصف -->
+      <section class="pdesc" id="pDesc" hidden>
+        <h2>وصف المنتج</h2>
+        <div id="pDescBody"></div>
+      </section>
+
+      <!-- نموذج الطلب -->
+      <section class="orderbox" id="orderBox">
+        <h2>اطلب الآن</h2>
+
+        <div class="osum">
+          <img id="osImg" alt="" width="56" height="56" hidden>
+          <div class="osum-text">
+            <strong id="osName"></strong>
+            <span id="osPrice"></span>
+          </div>
+        </div>
+
+        <ol class="osteps">
+          <li>أدخل بياناتك</li>
+          <li>نتصل بك لتأكيد الطلب</li>
+          <li>نرسل طلبك إلى عنوانك</li>
+        </ol>
+
+        <form id="orderForm" novalidate>
+          <div class="ofield">
+            <label for="oName">الاسم الكامل <b>*</b></label>
+            <input id="oName" name="customerName" type="text" autocomplete="name" enterkeyhint="next" maxlength="100">
+            <span class="ferr" data-for="customerName"></span>
+          </div>
+          <div class="ofield">
+            <label for="oPhone">رقم الهاتف <b>*</b></label>
+            <input id="oPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" placeholder="06XXXXXXXX" maxlength="20">
+            <span class="ferr" data-for="phone"></span>
+          </div>
+          <div class="ofield">
+            <label for="oCity">المدينة <b>*</b></label>
+            <input id="oCity" name="city" type="text" autocomplete="address-level2" enterkeyhint="next" maxlength="60">
+            <span class="ferr" data-for="city"></span>
+          </div>
+          <div class="ofield">
+            <label for="oAddress">العنوان <b>*</b></label>
+            <textarea id="oAddress" name="address" rows="2" autocomplete="street-address" maxlength="300"></textarea>
+            <span class="ferr" data-for="address"></span>
+          </div>
+          <div class="ofield">
+            <label for="qtyInput">الكمية</label>
+            <div class="qty">
+              <button type="button" id="qtyMinus" aria-label="إنقاص الكمية">−</button>
+              <input id="qtyInput" name="quantity" type="text" inputmode="numeric" value="1" maxlength="3" aria-label="الكمية">
+              <button type="button" id="qtyPlus" aria-label="زيادة الكمية">+</button>
+            </div>
+            <span class="ferr" data-for="quantity"></span>
+          </div>
+
+          <div class="ototal"><span>المجموع</span><strong id="oTotal">0 د.م</strong></div>
+          <div class="omsg" id="oMsg" role="alert" hidden></div>
+          <button type="submit" id="oBtn" class="btn btn-gold obtn">تأكيد الطلب</button>
+        </form>
+      </section>
+    </article>
+
+    <!-- منتجات أخرى -->
+    <section class="related" id="related" hidden>
+      <h2>منتجات أخرى قد تعجبك</h2>
+      <div class="related-track" id="relatedTrack"></div>
+    </section>
+  </main>
+
+  <!-- شريط الطلب السريع (الهاتف فقط) -->
+  <div class="buybar" id="buyBar">
+    <div class="buybar-price"><span>المجموع</span><strong id="bbPrice"></strong></div>
+    <button type="button" class="btn btn-gold" id="bbBtn">اطلب الآن</button>
+  </div>
+
+  <!-- عرض الصورة بملء الشاشة -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="عرض الصورة" hidden>
+    <button type="button" class="lb-close" id="lbClose" aria-label="إغلاق">✕</button>
+    <span class="lb-count" id="lbCount"></span>
+    <div class="lb-track" id="lbTrack"></div>
+  </div>
+
+  <!-- ========== Footer ========== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-title">إلكترو يوسف</h3>
+          <p class="footer-text">متجر متخصص في بيع المنتجات الإلكترونية، نحرص على تقديم منتجات مناسبة وخدمة واضحة وسريعة.</p>
+        </div>
+        <div>
+          <h3 class="footer-title">تابعنا</h3>
+          <!-- ضع الروابط الحقيقية مكان # لاحقًا -->
+          <div class="socials">
+            <a href="#" aria-label="فيسبوك">فيسبوك</a>
+            <a href="#" aria-label="تيك توك">تيك توك</a>
+            <a href="#" aria-label="واتساب">واتساب</a>
+            <a href="#" aria-label="إنستغرام">إنستغرام</a>
+          </div>
+        </div>
+      </div>
+      <p class="copy">© <span id="year">2026</span> إلكترو يوسف. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="product.js" defer></script>
+</body>
+</html>
